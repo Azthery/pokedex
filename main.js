@@ -21,7 +21,7 @@ async function chargerPokemons(){
 }
 
 async function callPokemons(callingPokemons){
-    const F = 1;
+    const F = 10;
     for(let i = 0; i < F; i++){
         pokemons = pokemons.concat((callingPokemons).results);
         callingPokemons = await loadPokemons(callingPokemons.next);
