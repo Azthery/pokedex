@@ -1,0 +1,31 @@
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgba(224, 206, 100, 0.466);
+}
+.main{
+    border: rgb(189, 189, 189) solid 2px;
+    border-radius: 5px;
+    padding: 15px 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pokemon{
+    width: 130px;
+    margin: 2px;
+    padding: 15px;
+    font-size: small;
+    border: rgba(72, 71, 184, 0.315) solid 2px;
+    border-radius: 20px;
+}
+.statsNone{
+    display: none;
+}
+.stats{
+    display:flex;
+}
+.card{
+    display: flex;
+
+}
