@@ -1,78 +1,82 @@
-const URL_API = 'https://pokeapi.co/api/v2/pokemon/'
-let pokemons = [];
-let bloques = document.getElementById('bloques');
+const URL_API = 'https://pokeapi.co/api/v2/pokemon/';
+let pokemons = [0];
+let allPokemons = [0];
+let cards = document.getElementById('cards');
 
-chargerPokemons();
+loadPokemons();
 
-async function loadPokemons(url){
+//llama a la api
+async function callApi(url){
     return ((await fetch(url)).json());
 }
 
-async function chargerPokemons(){
+//carga los pokemones
+async function loadPokemons(){
     try{
-        let callingPokemons = await loadPokemons(URL_API); //obtiene el url
-        await callPokemons(callingPokemons);               //obtiene todos los pokemons en array
-        await click();
-        console.log(pokemons);
-        
+        for(let i = 1; i< 25; i++){
+            pokemons.push(await callApi(`${URL_API}${i}`));
+            allPokemons.push(new Pokemon(pokemons[i]));
+            await innerPokemonHTML(allPokemons[i]);
+        }
+        console.log(allPokemons);
     } catch(err){
         console.error(err);
     }
 }
 
-async function callPokemons(callingPokemons){
-    const F = 1;
-    for(let i = 0; i < F; i++){
-        pokemons = pokemons.concat((callingPokemons).results);
-        callingPokemons = await loadPokemons(callingPokemons.next);
-    }
-    //este ciclo da a la array pokemons todos los datos de cada pokemon
-    for(let i = 0; i<(F*20) ;i++){
-        let pokemon = await loadPokemons(pokemons[i].url);
-        pokemons[i].name = pokemons[i].name.toLocaleUpperCase();
-        pokemons[i].HP = pokemon.stats[0].base_stat;
-        pokemons[i].attack = pokemon.stats[1].base_stat;
-        pokemons[i].defense = pokemon.stats[2].base_stat;
-        pokemons[i].specialAttack = pokemon.stats[3].base_stat;
-        pokemons[i].specialDefense = pokemon.stats[4].base_stat;
-        pokemons[i].speed = pokemon.stats[5].base_stat;
-        pokemons[i].weight = pokemon.weight;
-        pokemons[i].id = pokemon.id;
-        pokemons[i].img = pokemon.sprites.front_default;
-        
-        if(pokemon.types.length == 2){
-            pokemons[i].type = pokemon.types[0].type.name +' '+ pokemon.types[1].type.name
+//crea un pokemon como objeto
+class Pokemon{
+    constructor(pokemons){
+        this.name = pokemons.name;
+        this.HP = pokemons.stats[0].base_stat;
+        this.attack = pokemons.stats[1].base_stat;
+        this.defense = pokemons.stats[2].base_stat;
+        this.specialAttack = pokemons.stats[3].base_stat;
+        this.specialDefense = pokemons.stats[4].base_stat;
+        this.speed = pokemons.stats[5].base_stat;
+        this.id = pokemons.id;
+        this.img = pokemons.sprites.front_default;
+        this.weight = pokemons.weight;
+        this.type1 = pokemons.types[0].type.name;
+        this.id = pokemons.id;
+        if(pokemons.types.length == 2){
+            this.type2 = pokemons.types[1].type.name;
+            this.type = this.type1 + ' '+ this.type2;
         }else{
-            pokemons[i].type = pokemon.types[0].type.name
+            this.type = this.type1;
         }
-        delete pokemons[i].url;
+    }
+}
 
-        bloques.innerHTML += (
-            `<div id="click" class='pokemon click'>
-                <img class='img' src="${pokemons[i].img}"> 
-                <div class="pokemon--name">${pokemons[i].name}</div>
-                <div class"pokemon--type type1--${pokemons[i].type}">
-                ${pokemons[i].type}</div>
+//integra la carta del pokemon en el html
+async function innerPokemonHTML(pokemons){
+        cards.innerHTML += (
+            `<section id="click" class='pokemon click ${pokemons.type1}'>
+                <div class='pokemon--left'>
+                    <img class='img' src="${pokemons.img}">
+                    <div class="pokemon--name">${pokemons.name.toUpperCase()}</div>
+                    <div class"pokemon--type">
+                    ${pokemons.type}</div>
+                </div>
                 <div class="statsNone">
-                    <div>HP: ${pokemons[i].HP}</div>
-                    <div>Attack: ${pokemons[i].attack}</div>
-                    <div>Defense :${pokemons[i].defense}</div>
-                    <div>Special Attack: ${pokemons[i].specialAttack}</div>
-                    <div>Special Defense: ${pokemons[i].specialDefense}</div>
-                    <div>Speed: ${pokemons[i].speed}</div>
-                    <div>Weight: ${pokemons[i].weight}</div>
+                    <div>HP: ${pokemons.HP}</div>
+                    <div>Attack: ${pokemons.attack}</div>
+                    <div>Defense :${pokemons.defense}</div>
+                    <div>Special Attack: ${pokemons.specialAttack}</div>
+                    <div>Special Defense: ${pokemons.specialDefense}</div>
+                    <div>Speed: ${pokemons.speed}</div>
+                    <div>Weight: ${pokemons.weight}</div>
+                    <div>ID: ${pokemons.id}</div>
                 <div/>
-            <div/>`
+            <section/>`
         )
     }
-    return pokemons
-}
 
 function click(){
 let aClick = document.getElementById("click");
 console.log(aClick)
-aClick.addEventListener("click", () =>{
-    aClick.classList.add('card','stats');
-    aClick.classList.remove('pokemon', 'main', 'statsNone')
-})
+// aClick.addEventListener("click", () =>{
+//     aClick.classList.add('card','stats');
+//     aClick.classList.remove('pokemon', 'main', 'statsNone')
+// })
 }
