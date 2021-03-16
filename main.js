@@ -81,9 +81,9 @@ function click(){
     //no como el ciclo de loadPokemons() que inicia desde el 1
     for(let i = 0; i < numTotalPokemons-1; i++){
         onClick[i].addEventListener('click', () => {
-            onClick[i].classList.add('classTest');
+            onClick[i].classList.add('clicked');
             if(lastElementOnTheClick){
-                lastElementOnTheClick.classList.remove('classTest');
+                lastElementOnTheClick.classList.remove('clicked');
             }
             lastElementOnTheClick = onClick[i];
         });

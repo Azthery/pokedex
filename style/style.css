@@ -2,8 +2,7 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 body{
-    
-    background-image: url(./media/background.png);
+    background-image: url(../media/background.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -17,9 +16,10 @@ body{
     display: flex;
     justify-content: center;
 }
-.h1{
-    height: 150px;
-    width: 40%;
+.title{
+    margin: 10px;
+    padding-left: 100px;
+    width: 25%;
     display: flex;
     justify-content: center;
 }
@@ -46,6 +46,7 @@ body{
     width: 50%;
     height: 40px;
     padding: 10px 40px;
+    outline: none;
 }
 .contain--head__search::placeholder{
     color: black;
@@ -58,6 +59,7 @@ body{
     border-bottom: rgba(0, 0, 0, 0.39) solid 3px;
     height: 40px;
     width: 100px;
+    outline: none;
 }
 .contain--head--filter__list{
     display: none;
@@ -79,21 +81,21 @@ body{
     border-radius: 20px;
     position: static;
 }
-.classTest{
+.clicked{
     flex-direction: row;
     border: rgb(20, 20, 20) solid 4px;
     width: 300px;
     position: fixed;
     top: 30%; left: 40%;
 }
-.classTest .pokemon--basic{
+.clicked .pokemon--basic{
     width: 50%;
     height: 40%;
 }
 /* .test .pokemon--basic{
 
 } */
-.classTest .stats{
+.clicked .stats{
     display: flex;
     flex-direction: column;
 }
@@ -108,58 +110,4 @@ body{
     border: solid 1em rgba(255, 255, 255, 0);
     border-radius: 10px ;
     background-color: rgba(200, 200, 200, 0.8);
-}
-.fire{
-    background-color: #c72100;
-}
-.water{
-    background-color: #0c67c2;
-}
-.grass{
-    background-color: #3b9c05;
-}
-.bug{
-    background-color: #88960e;
-}
-.flying{
-    background-color: #9aabf6;
-}
-.normal{
-    background-color: #c6c0b8;
-}
-.electric{
-    background-color: #f9b716;
-}
-.psychic{
-    background-color: #e8437c;
-}
-.fighting{
-    background-color: #81341d;
-}
-.ice{
-    background-color: #7bd9f7;
-}
-.poison{
-    background-color: #8c408e;
-}
-.rock{
-    background-color: #b1994f;
-}
-.fairy{
-    background-color: #f3aef3;
-}
-.dark{
-    background-color: #423126;
-}
-.ground{
-    background-color: #d0af52;
-}
-.steel{
-    background-color: #9393a5;
-}
-.dragon{
-    background-color: #705ad8;
-}
-.ghost{
-    background-color: #454593;
 }
