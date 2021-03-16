@@ -74,6 +74,7 @@ async function innerPokemonHTML(pokemons){
     )
 }
 
+//funcion que detecta cuando una carta de un pokemon recibe un click
 function click(){
     let onClick = document.getElementsByClassName('click');
     let lastElementOnTheClick;
@@ -86,6 +87,25 @@ function click(){
                 lastElementOnTheClick.classList.remove('clicked');
             }
             lastElementOnTheClick = onClick[i];
+            console.log(lastElementOnTheClick);
         });
     }
 }
+
+function filter(){
+    let filtro = document.getElementById('filter');
+    let filtroList = document.getElementById('filter-list');
+    let openFilter = false;
+    console.log(filtro);
+    filtro.addEventListener('click', ()=>{
+        if(openFilter){
+            filtroList.classList.add('contain--head--filter__list--none');
+            openFilter = false;
+        }else{
+            filtroList.classList.remove('contain--head--filter__list--none');
+            openFilter = true;
+        }
+        console.log('a')
+    })
+}
+filter();

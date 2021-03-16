@@ -61,7 +61,21 @@ body{
     width: 100px;
     outline: none;
 }
+.contain--head--filter div{
+    position: absolute;
+    top: 200px;
+    right: 220px;
+}
 .contain--head--filter__list{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 25px;
+    margin-top: none;
+    border-radius: 0px 0px 20px 20px;
+    background-color: rgba(206, 206, 206, 0.555);
+}
+.contain--head--filter__list--none{
     display: none;
 }
 .main{
@@ -86,18 +100,17 @@ body{
     border: rgb(20, 20, 20) solid 4px;
     width: 300px;
     position: fixed;
-    top: 30%; left: 40%;
+    top: 30%; left: 38.75%;
 }
 .clicked .pokemon--basic{
     width: 50%;
     height: 40%;
 }
-/* .test .pokemon--basic{
-
-} */
 .clicked .stats{
     display: flex;
     flex-direction: column;
+    padding-left: 10px;
+    border-left: rgba(0, 0, 0, 0.39) solid 1px;
 }
 .stats{
     display: none;
@@ -110,4 +123,8 @@ body{
     border: solid 1em rgba(255, 255, 255, 0);
     border-radius: 10px ;
     background-color: rgba(200, 200, 200, 0.8);
+}
+.pokemon--basic div{
+    display: flex;
+    justify-content: center;
 }
