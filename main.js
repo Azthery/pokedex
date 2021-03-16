@@ -2,6 +2,7 @@ const URL_API = 'https://pokeapi.co/api/v2/pokemon/';
 let pokemons = [0];
 let allPokemons = [0];
 let cards = document.getElementById('cards');
+const numTotalPokemons = 40; // cantidad de pokemons que se obtendran
 
 loadPokemons();
 
@@ -13,11 +14,12 @@ async function callApi(url){
 //carga los pokemones
 async function loadPokemons(){
     try{
-        for(let i = 1; i< 25; i++){
+        for(let i = 1; i< numTotalPokemons; i++){
             pokemons.push(await callApi(`${URL_API}${i}`));
             allPokemons.push(new Pokemon(pokemons[i]));
             await innerPokemonHTML(allPokemons[i]);
         }
+        click();
         console.log(allPokemons);
     } catch(err){
         console.error(err);
@@ -50,33 +52,40 @@ class Pokemon{
 
 //integra la carta del pokemon en el html
 async function innerPokemonHTML(pokemons){
-        cards.innerHTML += (
-            `<section id="click" class='pokemon click ${pokemons.type1}'>
-                <div class='pokemon--left'>
-                    <img class='img' src="${pokemons.img}">
-                    <div class="pokemon--name">${pokemons.name.toUpperCase()}</div>
-                    <div class"pokemon--type">
-                    ${pokemons.type}</div>
-                </div>
-                <div class="statsNone">
-                    <div>HP: ${pokemons.HP}</div>
-                    <div>Attack: ${pokemons.attack}</div>
-                    <div>Defense :${pokemons.defense}</div>
-                    <div>Special Attack: ${pokemons.specialAttack}</div>
-                    <div>Special Defense: ${pokemons.specialDefense}</div>
-                    <div>Speed: ${pokemons.speed}</div>
-                    <div>Weight: ${pokemons.weight}</div>
-                    <div>ID: ${pokemons.id}</div>
-                <div/>
-            <section/>`
-        )
-    }
+    cards.innerHTML += (
+        `<section id="click" class='pokemon click ${pokemons.type1}'>
+            <div class='pokemon--basic'>
+                <img class='img' src="${pokemons.img}">
+                <div class="pokemon--name">${pokemons.name.toUpperCase()}</div>
+                <div class"pokemon--type">
+                ${pokemons.type}</div>
+            </div>
+            <div class="stats">
+                <div>HP: ${pokemons.HP}</div>
+                <div>Attack: ${pokemons.attack}</div>
+                <div>Defense :${pokemons.defense}</div>
+                <div>Special Attack: ${pokemons.specialAttack}</div>
+                <div>Special Defense: ${pokemons.specialDefense}</div>
+                <div>Speed: ${pokemons.speed}</div>
+                <div>Weight: ${pokemons.weight}</div>
+                <div>ID: ${pokemons.id}</div>
+            <div/>
+        <section/>`
+    )
+}
 
 function click(){
-let aClick = document.getElementById("click");
-console.log(aClick)
-// aClick.addEventListener("click", () =>{
-//     aClick.classList.add('card','stats');
-//     aClick.classList.remove('pokemon', 'main', 'statsNone')
-// })
+    let onClick = document.getElementsByClassName('click');
+    let lastElementOnTheClick;
+    //a numTotalPokemons se le resta uno, ya que el ciclo empieza desde el 0
+    //no como el ciclo de loadPokemons() que inicia desde el 1
+    for(let i = 0; i < numTotalPokemons-1; i++){
+        onClick[i].addEventListener('click', () => {
+            onClick[i].classList.add('classTest');
+            if(lastElementOnTheClick){
+                lastElementOnTheClick.classList.remove('classTest');
+            }
+            lastElementOnTheClick = onClick[i];
+        });
+    }
 }

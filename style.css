@@ -51,13 +51,16 @@ body{
     color: black;
     font-weight: bolder;
 }
-.contain--head__filter{
+.contain--head--filter{
     background-color: rgba(206, 206, 206, 0.555);
     border-radius: 5px;
     border: none;
     border-bottom: rgba(0, 0, 0, 0.39) solid 3px;
     height: 40px;
     width: 100px;
+}
+.contain--head--filter__list{
+    display: none;
 }
 .main{
     display: flex;
@@ -76,27 +79,26 @@ body{
     border-radius: 20px;
     position: static;
 }
-.pokemon:hover{
+.classTest{
     flex-direction: row;
-    border: rgb(0, 0, 0) solid 3px;
+    border: rgb(20, 20, 20) solid 4px;
     width: 300px;
     position: fixed;
     top: 30%; left: 40%;
 }
-.pokemon:hover .pokemon--left{
+.classTest .pokemon--basic{
     width: 50%;
-    /* height: 40%; */
+    height: 40%;
 }
+/* .test .pokemon--basic{
 
-.pokemon:hover .statsNone{
+} */
+.classTest .stats{
     display: flex;
     flex-direction: column;
 }
-.statsNone{
-    display: none;
-}
 .stats{
-    display:flex;
+    display: none;
 }
 .card{
     display: flex;
