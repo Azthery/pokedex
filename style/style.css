@@ -10,6 +10,7 @@ body{
     margin: 0%;
     padding: 0%;
 }
+
 .header{
     width: 100%;
     height: 200px;
@@ -34,9 +35,11 @@ body{
     margin: 20px 20px;
 }
 .contain--head{
+    /* position: absolute; */
     padding: 5px 10px 20px 10px ;
     display: flex;
     justify-content: space-around;
+    height: 50px;
 }
 .contain--head__search{
     background-color: rgba(206, 206, 206, 0.555);
@@ -56,34 +59,56 @@ body{
     background-color: rgba(206, 206, 206, 0.555);
     border-radius: 5px;
     border: none;
-    border-bottom: rgba(0, 0, 0, 0.39) solid 3px;
-    height: 40px;
+    /* border-bottom: rgba(0, 0, 0, 0.39) solid 3px; */
+    /* height: 40px; */
     width: 100px;
     outline: none;
-}
-.contain--head--filter div{
-    position: absolute;
-    top: 200px;
-    right: 220px;
-}
-.contain--head--filter__list{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+.filter--display{
+    border-radius: 5px 5px 0px 0px;
+}
+.contain--head--filter button{
+    justify-content: center;
+    align-self: center;
+    position: absolute;
+    border-color: rgb(0, 0, 0,0);
+    background-color: rgb(0, 0, 0,0);
+    outline: none;
+    cursor: pointer;
+}
+.contain--head--filter__list{
+    flex-direction: column;
     position: relative;
-    top: 25px;
-    margin-top: none;
+    top: 130px;
+    margin: -80px 0px;
+    padding: 10px;
     border-radius: 0px 0px 20px 20px;
     background-color: rgba(206, 206, 206, 0.555);
+    list-style: none;
+    cursor: default;
+    overflow-y: scroll;
 }
-.contain--head--filter__list--none{
-    display: none;
+.contain--head--filter__list li{
+    display: flex;
+    justify-content: center;
+    padding: 4px 0px;
+    border-top: 0.5px solid rgb(41, 41, 41);
+    cursor: pointer;
 }
+.contain--head--filter__list::-webkit-scrollbar{
+    display: block;
+}
+
+/* style cards-pokemons */
 .main{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
-
 .pokemon{
     display: flex;
     flex-direction:column ;
@@ -115,10 +140,7 @@ body{
 .stats{
     display: none;
 }
-.card{
-    display: flex;
 
-}
 .img{
     border: solid 1em rgba(255, 255, 255, 0);
     border-radius: 10px ;
@@ -127,4 +149,11 @@ body{
 .pokemon--basic div{
     display: flex;
     justify-content: center;
+}
+
+
+
+/* display none */
+.display--none{
+    display: none;
 }

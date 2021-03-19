@@ -2,9 +2,12 @@ const URL_API = 'https://pokeapi.co/api/v2/pokemon/';
 let pokemons = [0];
 let allPokemons = [0];
 let cards = document.getElementById('cards');
-const numTotalPokemons = 40; // cantidad de pokemons que se obtendran
+const numTotalPokemons = 90; // cantidad de pokemons que se obtendran
 
 loadPokemons();
+interactionWithTheFilter();
+filter();
+search();
 
 //llama a la api
 async function callApi(url){
@@ -13,15 +16,18 @@ async function callApi(url){
 
 //carga los pokemones
 async function loadPokemons(){
+    let numPokemon = 0;
     try{
         for(let i = 1; i< numTotalPokemons; i++){
             pokemons.push(await callApi(`${URL_API}${i}`));
             allPokemons.push(new Pokemon(pokemons[i]));
-            await innerPokemonHTML(allPokemons[i]);
+            innerPokemonHTML(allPokemons[i]);
+            numPokemon = i;
         }
+        
         click();
-        console.log(allPokemons);
     } catch(err){
+        console.log(`Pokemon ID with error is: ${numPokemon+1}`);
         console.error(err);
     }
 }
@@ -53,7 +59,7 @@ class Pokemon{
 //integra la carta del pokemon en el html
 async function innerPokemonHTML(pokemons){
     cards.innerHTML += (
-        `<section id="click" class='pokemon click ${pokemons.type1}'>
+        `<section id="${pokemons.type1}" class='${pokemons.name} ${pokemons.type} card pokemon click'>
             <div class='pokemon--basic'>
                 <img class='img' src="${pokemons.img}">
                 <div class="pokemon--name">${pokemons.name.toUpperCase()}</div>
@@ -92,20 +98,57 @@ function click(){
     }
 }
 
-function filter(){
+//genera la interaccion del filtro
+function interactionWithTheFilter(){
     let filtro = document.getElementById('filter');
     let filtroList = document.getElementById('filter-list');
     let openFilter = false;
-    console.log(filtro);
+    filtroList.classList.add('display--none');
     filtro.addEventListener('click', ()=>{
         if(openFilter){
-            filtroList.classList.add('contain--head--filter__list--none');
+            filtroList.classList.add('display--none');
+            filtro.classList.remove('filter--display');
             openFilter = false;
         }else{
-            filtroList.classList.remove('contain--head--filter__list--none');
+            filtroList.classList.remove('display--none');
+            filtro.classList.add('filter--display');
             openFilter = true;
         }
-        console.log('a')
     })
 }
-filter();
+
+async function filter(){
+    let filterType = document.getElementsByClassName('filterType');
+    let cards = document.getElementsByClassName('card');
+    for(let i = 0 ; i < filterType.length ; i++){
+        // console.log((filterType[i].innerText).toLowerCase());
+        filterType[i].addEventListener("click", (type) => {
+            //numTotalPokemons-1 ya que este ciclo empieza de desde el 0
+            //no desde el 1
+            for(let i = 0 ; i < numTotalPokemons-1 ; i++){
+                cards[i].classList.add('display--none');
+                if(type.target.id == cards[i].classList[1]){
+                    cards[i].classList.remove('display--none');
+                }
+                if(type.target.id == cards[i].classList[2]){
+                    cards[i].classList.remove('display--none');
+                }
+                //Si es 'all' se desplegan todos
+                if(type.target.id == "all"){
+                    cards[i].classList.remove('display--none');
+                }
+            }
+        });
+    }
+}
+
+function search(){
+    let elSearch = document.getElementById('search');
+    console.log(elSearch);
+    elSearch.addEventListener( 'keydown', (el) => {
+        if(el.key == 'Enter')
+        console.log('awa')
+    })
+}
+let elSearch = document.getElementById('search');
+    console.log(elSearch.value);

@@ -14,17 +14,31 @@
     </header>
         <section class="contain">
             <div class="contain--head">
-                <input class="contain--head__search" type="search" placeholder="Search Pokémon">
-                <button class="contain--head--filter" id="filter">
-                    <div>Type ▼</div>
+                <input class="contain--head__search" id="search" type="search" placeholder="Search Pokémon">
+                <div class="contain--head--filter" id="filter">
+                    <button id='filter__button'>Type ▼</button>
                     <ul class="contain--head--filter__list--none contain--head--filter__list" id="filter-list">
-                        <li>Fire</li>
-                        <li>Water</li>
-                        <li>Grss</li>
-                        <li>Bug</li>
-                        <li>☭</li>
+                        <li class="filterType" id="all">All</li>
+                        <li class="filterType" id="water">Water</li>
+                        <li class="filterType" id="grass">Grass</li>
+                        <li class="filterType" id="dragon">Dragon</li>
+                        <li class="filterType" id="bug">Bug</li>
+                        <li class="filterType" id="normal">Normal</li>
+                        <li class="filterType" id="flying">Flying</li>
+                        <li class="filterType" id="electric">Electric</li>
+                        <li class="filterType" id="psychic">Psychic</li>
+                        <li class="filterType" id="fighting">Fighting</li>
+                        <li class="filterType" id="ice">Ice</li>
+                        <li class="filterType" id="poison">poison</li>
+                        <li class="filterType" id="rock">Rock</li>
+                        <li class="filterType" id="fairy">Fairy</li>
+                        <li class="filterType" id="dark">Dark</li>
+                        <li class="filterType" id="ghost">Ghost</li>
+                        <li class="filterType" id="ground">Ground</li>
+                        <li class="filterType" id="steel">Steel</li>
+                        <li class="filterType" id="fire">Fire</li>
                     </ul>
-                </button>
+                </div>
             </div>
             <section class="main" id="cards">
 
